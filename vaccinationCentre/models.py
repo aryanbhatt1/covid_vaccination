@@ -1,3 +1,4 @@
+from datetime import datetime
 from statistics import mode
 from django.contrib.auth.models import User
 from django.db import models
@@ -40,4 +41,6 @@ class Bookings(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     status = models.CharField('Status', max_length=40, default="Not Vaccinated", null=True)
     centre = models.ForeignKey(VaccinationCentre, on_delete=models.CASCADE, null=True)
-    timeDate = models.DateTimeField(auto_now_add=True, null=True)
+    timeDate = models.DateTimeField(editable=True,default=datetime.now(), null=True)
+    def __str__(self):
+        return str(self.timeDate)

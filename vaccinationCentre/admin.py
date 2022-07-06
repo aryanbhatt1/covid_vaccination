@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import home, city, VaccinationCentre, BookAppointment, Bookings
-
+from datetime import datetime
 # Register your models here.
 
 @admin.register(home)

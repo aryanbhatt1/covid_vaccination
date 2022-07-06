@@ -14,6 +14,7 @@ from django.contrib.auth.models import Group
 # Create your views here.
 
 def homeView(request):
+    print(datetime.now())
     host_url = request.get_host()
     scheme = request.scheme
     home_data = home.objects.all()
