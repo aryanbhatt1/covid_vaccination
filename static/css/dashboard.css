@@ -1,0 +1,74 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,700&subset=latin,greek);
+* {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+html {
+  height: 100%;
+  font-size: 16px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+body {
+  height: 100%;
+  background: #F3F4F8;
+}
+p{
+    color: #fff;
+}
+.brand{    
+    padding-top: 10px;
+    padding-left: 20px;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: white;
+  box-shadow: inset 0 -1px 0 0 #edeef4;
+}
+
+sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 180px;
+  background: #f35454;
+}
+.card{
+    background: #fff;
+    padding: 40px;
+}
+
+
+
+sidebar nav {
+  max-height: calc(100vh - 145px);
+  overflow: auto;
+}
+
+.t{
+    float:right !important;
+    margin-left: 300px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.caret{
+    margin-left: 20px;
+    margin-top: 10px;
+    color: #fff;
+}
+.caret:hover{
+    font-size: 20px;
+    color: #fff;
+}
+.content_dash{
+    margin-left: 250px;
+    padding-top: 120px;
+    padding-right: 50px !important; 
+    padding-bottom: 50px;
+}

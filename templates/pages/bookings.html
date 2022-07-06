@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block extrastyle %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}"/>
+<style>
+    .my-custom-scrollbar {
+        position: relative;
+        height: 200px;
+        overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+        display: block;
+        }
+        .controls{
+            width:100px !important;
+        }
+</style>
+{% endblock %}
+{% block content %}
+<header>
+    <a href="{% url 'logout' %}" class="btn btn-primary t">Log out</a>
+    
+</header>
+
+<sidebar>
+	<div class="brand">
+		<p>Vaccination Centre</p>
+	</div>
+
+	<nav>
+		<a type="button" class="caret" href="{% url 'dashboard' %}">Home</a>
+        <br>
+        <a type="button" class="caret" href="{% url 'bookings' %}">Bookings</a>
+	</nav>
+</sidebar>
+<div class="container content_dash">
+    <div class="card">
+        {% if not request.user.is_superuser%}
+        <h1>My Booking</h1>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" style="margin-top:20px;">
+            <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th class="th-sm">S.No</th>
+                    <th class="th-sm">Centre Name
+                    </th>
+                    <th class="th-sm">Address
+                    </th>
+                    <th class="th-sm">Date
+                    </th>
+                    <th class="th-sm">Time
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for details in mybookings %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ details.centre.centre_name }}</td>
+                    <td>{{ details.centre.address }}</td>
+                    <td>{{ details.timeDate.date }}</td>
+                    <td>{{ details.timeDate.time }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              
+              </table>
+            </div>
+        {% endif %}
+        {% if request.user.is_superuser %}
+        <h1>Today's Bookings</h1>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" style="margin-top:20px;">
+            <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th class="th-sm">S.No</th>
+                    <th class="th-sm">First Name
+                    </th>
+                    <th class="th-sm">Last Name
+                    </th>
+                    <th class="th-sm">Email ID
+                    </th>
+                    <th class="th-sm">Status
+                    </th>
+                    <th class="th-sm">
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for details in bookings %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ details.user.first_name }}</td>
+                    <td>{{ details.user.last_name }}</td>
+                    <td>{{ details.user.email }}</td>
+                    <td>{{ details.status }}</td>
+                    <td><a href="{% url 'vaccinated' details.id %}" class="btn btn-danger">Vaccinated</a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              
+              </table>
+            </div>
+        {% endif %}
+    </div>      
+</div>
+
+{% endblock %}
+{%block js-foot%}
+
+{%endblock%}
+

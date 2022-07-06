@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/signup_login.css'%}"/>
+{% endblock %}
+{% block content %}
+    <div class="body container-fluid">
+    <div class="card">
+        <div class="card-body pl-150 pr-150">
+            <div class="row">
+                <div class="col-md-6">
+                    <img class="alumni-image" width="480" height="400" src="{% static 'img/image.jpg' %}">
+                </div>
+                <div class="col-md-6">
+                    <form method="POST">
+                {% csrf_token %}
+                <div class="form-outline">
+                    <input type="text" name="username" id="id_username" class="form-control form-control-lg" />
+                    <label class="form-label" for="id_username">Username</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-outline">
+                            <input type="text" name="first_name" id="id_first_name" class="form-control form-control-lg" />
+                            <label class="form-label" for="id_first_name">First name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-outline">
+                            <input type="text" name="last_name" id="id_last_name" class="form-control form-control-lg" />
+                            <label class="form-label" for="id_last_name">Last name</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-outline">
+                    <input type="email" name="email" id="id_email" class="form-control form-control-lg" />
+                    <label class="form-label" for="id_email">Email Address</label>
+                </div>
+                <div class="form-outline">
+                    <input type="password" name="password1" id="id_password1" class="form-control form-control-lg" />
+                    <label class="form-label" for="id_password1">Password</label>
+                </div>
+                <div class="form-outline">
+                    <input type="password" name="password2" id="id_password2" class="form-control form-control-lg" />
+                    <label class="form-label" for="id_password2">Password Confirmation</label>
+                </div>
+                <button class="btn btn-danger" type="submit">Sign Up</button>
+            </form>
+            {% for message in messages %}
+            <div class="alert alert-success" style="margin-top: 30px">
+                {{ message }}<br>
+                Login : {% url 'UserLogin' %}
+                </div>
+            {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
